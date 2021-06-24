@@ -46,7 +46,7 @@ class SimpleLivewireSelectServiceProvider extends ServiceProvider
             // $this->commands([]);
         }
 
-        Blade::component("{config('simple-livewire-select.component-name', 'simple-select')}", SimpleLivewireSelect::class);
+        Blade::component(config('simple-livewire-select.component-name', 'simple-select'), SimpleLivewireSelect::class);
     }
 
     /**

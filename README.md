@@ -15,6 +15,12 @@ You can install the package via composer:
 composer require victorybiz/simple-livewire-select
 ```
 
+Next, you should publish the configuration file using the vendor:publish Artisan command. The configuration file will be placed in your application's config directory:
+
+```bash
+php artisan vendor:publish --provider="Victorybiz\SimpleLivewireSelect\SimpleLivewireSelectServiceProvider"
+```
+
 ## Requirements
 This package use the following packages.
 * Laravel Livewire (https://laravel-livewire.com/)
