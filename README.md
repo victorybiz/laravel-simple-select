@@ -360,7 +360,7 @@ The simple-select component makes use of `Popper.js` for positioning the select 
 ## Props / Attributes
 
 | Name | Type | Default | Required | Description |
-| --- | --- | --- | --- | --- | --- |
+| --- | --- | --- | --- | --- |
 | **id** | `Integer||String` | | Yes | Used to identify the component in events. |
 | **name** | `Integer||String` | | Yes | Specifies a name for component. |
 | **options** | `Array` | | Yes | Array of available options: Objects, Strings or Integers. If array of objects, visible text/label will default to `option.text` and value default to `option.value`. |
