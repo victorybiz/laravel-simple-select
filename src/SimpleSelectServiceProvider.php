@@ -25,12 +25,12 @@ class SimpleSelectServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->publishes([
                 __DIR__.'/../config/config.php' => config_path('simple-select.php'),
-            ], 'simple-select-config');
+            ], 'simple-select:config');
             
             // Publishing the views.
             $this->publishes([
                 __DIR__.'/../resources/views' => resource_path('views/vendor/simple-select'),
-            ], 'simple-select-views');
+            ], 'simple-select:views');
 
             // Publishing assets.
             /*$this->publishes([

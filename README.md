@@ -48,11 +48,11 @@ composer require victorybiz/laravel-simple-select
 
 ```bash
 # Publish the config file
-php artisan vendor:publish --tag=simple-select-config
+php artisan vendor:publish --tag=simple-select:config
 ```
 ```bash
 # Publish the view file
-php artisan vendor:publish --tag=simple-select-views
+php artisan vendor:publish --tag=simple-select:views
 ```
 
 <a name="requirements"></a>

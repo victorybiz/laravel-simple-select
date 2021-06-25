@@ -1,7 +1,7 @@
 <div
     class="relative mt-1"
     x-data="SimpleSelect({
-        dataSource: {{ json_encode($options) }},
+        dataSource: {{ is_array($options) ? json_encode($options) : json_encode([]) }},
         @if($attributes->has('wire:model'))
             selected: @entangle($attributes->wire('model')),
         @else
@@ -9,7 +9,7 @@
         @endif
         valueField: '{{ $valueField }}',
         textField: '{{ $textField }}',
-        value: '{{ $value }}',
+        value: @if(is_array($value)) {{ json_encode($value) }} @else '{{ $value }}' @endif,
         name: '{{ $name }}',
         id: '{{ $id }}',
         placeholder: '{{ $placeholder }}',
@@ -26,7 +26,7 @@
     x-init="init();"
     x-on:click.outside="closeSelect()"
     x-on:keydown.escape="closeSelect()"
-    :wire:key="`${id}-${generateID()}`"
+    :wire:key="`${id}${generateID()}`"
 >
     <div
         x-ref="simpleSelectButton"
@@ -39,7 +39,6 @@
             'bg-gray-200 cursor-default': disabled
         }"
         {{ $attributes->class('block w-full border border-gray-300 rounded-md shadow-sm focus:ring-0 focus:ring-gray-400 focus:border-gray-400 sm:text-sm sm:leading-5')->only('class'); }}
-        
     > 
         <div x-cloak x-show="!selected || selected.length === 0" class="flex flex-wrap">
             <div class="text-gray-800 rounded-sm w-full truncate px-2 py-0.5 my-0.5 flex flex-row items-center">
@@ -348,10 +347,11 @@ function SimpleSelect(config) {
                 this.popperHeight = (this.$refs.simpleSelectOptionsList.offsetHeight + 20) + 'px';
             }
             
-            let createPopper = window.Popper ? window.Popper.createPopper : (window.createPopper ? window.createPopper : null);
+            let createPopper = window.Popper ? window.Popper.createPopper : null;
+            createPopper = !createPopper && window.createPopper ? window.createPopper : null;
 
             if (typeof createPopper !== 'function') {
-                throw new TypeError(`<x-simple-select> requires Popper (https://popper.js.org)`);
+                throw new TypeError('Laravel Simple Select: requires Popper (https://popper.js.org)');
             }
                         
             if (createPopper && this.$refs.simpleSelectButton && this.$refs.simpleSelectOptionsContainer) {
@@ -415,4 +415,4 @@ function SimpleSelect(config) {
 }
 window.SimpleSelect = SimpleSelect;
 </script>
-<?php endif; ?>
+<?php //endif; ?>
