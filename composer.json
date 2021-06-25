@@ -36,12 +36,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Victorybiz\\LaravelSimpleSelect\\": "src"
+            "Victorybiz\\SimpleSelect\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Victorybiz\\LaravelSimpleSelect\\Tests\\": "tests"
+            "Victorybiz\\SimpleSelect\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -55,10 +55,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Victorybiz\\LaravelSimpleSelect\\LaravelSimpleSelectServiceProvider"
+                "Victorybiz\\SimpleSelect\\SimpleSelectServiceProvider"
             ],
             "aliases": {
-                "LaravelSimpleSelect": "Victorybiz\\LaravelSimpleSelect\\LaravelSimpleSelectFacade"
+                "SimpleSelect": "Victorybiz\\SimpleSelect\\SimpleSelectFacade"
             }
         }
     }

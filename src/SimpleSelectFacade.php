@@ -1,13 +1,13 @@
 <?php
 
-namespace Victorybiz\LaravelSimpleSelect;
+namespace Victorybiz\SimpleSelect;
 
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @see \Victorybiz\LaravelSimpleSelect\Skeleton\SkeletonClass
+ * @see \Victorybiz\SimpleSelect\Skeleton\SkeletonClass
  */
-class LaravelSimpleSelectFacade extends Facade
+class SimpleSelectFacade extends Facade
 {
     /**
      * Get the registered name of the component.
@@ -16,6 +16,6 @@ class LaravelSimpleSelectFacade extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'laravel-simple-select';
+        return 'simple-select';
     }
 }

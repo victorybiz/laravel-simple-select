@@ -1,16 +1,17 @@
 <?php
 
-namespace Victorybiz\LaravelSimpleSelect;
+namespace Victorybiz\SimpleSelect;
 
 use Illuminate\View\Component;
 
-class LaravelSimpleSelect extends Component
+class SimpleSelect extends Component
 {
     public $id;
     public $name;
     public $options;
     public $valueField;
     public $textField;
+    public $value;
     public $placeholder;
     public $searchInputPlaceholder;
     public $noOptions;
@@ -32,6 +33,7 @@ class LaravelSimpleSelect extends Component
         $name,
         $valueField = 'value', 
         $textField = 'text' , 
+        $value = null , 
         $placeholder = 'Select Option',
         $searchInputPlaceholder = 'Search...',
         $noOptions = 'No option data.',
@@ -45,6 +47,7 @@ class LaravelSimpleSelect extends Component
         $this->name = $name;
         $this->valueField = $valueField;
         $this->textField = $textField;
+        $this->value = $value;
         $this->placeholder = $placeholder;
         $this->searchInputPlaceholder = $searchInputPlaceholder;
         $this->noOptions = $noOptions;
@@ -60,6 +63,6 @@ class LaravelSimpleSelect extends Component
      */
     public function render()
     {
-        return view('components.laravel-simple-select');
+        return view('components.simple-select');
     }
 }

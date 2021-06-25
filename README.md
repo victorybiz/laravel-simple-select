@@ -44,17 +44,21 @@ You can install the package via composer:
 composer require victorybiz/laravel-simple-select
 ```
 
-Next, you should publish the configuration file using the vendor:publish Artisan command. The configuration file will be placed in your application's config directory:
+**OPTIONAL**: To customize the component, you should publish the configuration file using the vendor:publish Artisan command. The configuration file will be placed in your application's config directory and view file in views directory respectively:
 
 ```bash
-php artisan vendor:publish --provider="Victorybiz\LaravelSimpleSelect\LaravelSimpleSelectServiceProvider"
+# Publish the config file
+php artisan vendor:publish --tag=simple-select-config
+
+# Publish the view file
+php artisan vendor:publish --tag=simple-select-views
 ```
 
 <a name="requirements"></a>
 
 ## Requirements
 This package use the following packages.
-* Laravel Livewire (https://laravel-livewire.com/) is required to use `wire:model`
+* Laravel Livewire (https://laravel-livewire.com/) is required when using Livewire `wire:model`
 * TailwindCSS (https://tailwindcss.com/) 
 * Heroicon (https://heroicons.com/) 
 * Alpine.js v3 (https://alpinejs.dev/) 
@@ -354,13 +358,14 @@ The simple-select component makes use of `Popper.js` for positioning the select 
 
 ## Props / Attributes
 
-Name | Type | Default | Required | Description |
+| Name | Type | Default | Required | Description |
 | --- | --- | --- | --- | --- | --- |
 | **id** | `Integer||String` | | Yes | Used to identify the component in events. |
 | **name** | `Integer||String` | | Yes | Specifies a name for component. |
 | **options** | `Array` | | Yes | Array of available options: Objects, Strings or Integers. If array of objects, visible text/label will default to `option.text` and value default to `option.value`. |
 | **value-field** | `String` | `'value'` | No | Array key for option value if `options` is an associative array. |
 | **text-field** | `String` | `'text'` | No | Array key for option text if `options` is an associative array. |
+| **value** | `Array||String||Integer	` | `null` | No | Presets the selected options. |
 | **placeholder** | `String` | `'Select Option'` | No | Equivalent to the `placeholder` attribute on a `<select>` input. | 
 | **searchable** | `Boolean` | `true` | No | Show / hide options search input. | 
 | **search-input-placeholder** | `String` | `'Search...'` | No | Equivalent to the `placeholder` attribute on a `<input>`. | 
@@ -377,7 +382,7 @@ Name | Type | Default | Required | Description |
 
 ## Slots / Custom Display
 
-Name | Description |
+| Name | Description |
 | --- | --- |
 | **customOption** | Slot for custom option text template. See [example](custom-option-slot) above. |
 | **customDeselectOptionIcon**| Slot for custom deselect option icon markup. See [example](custom-icon-slot) above. |
@@ -388,7 +393,7 @@ Name | Description |
 
 ## Events
 
-Name | Listen to |  Description |
+| Name | Listen to |  Description |
 | --- | --- |  --- |
 | **Select** | `select` | Emitted after selecting an option. See [example](event-listener) above. |
 
