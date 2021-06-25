@@ -28,9 +28,9 @@ class SimpleSelect extends Component
      * @return void
      */
     public function __construct(
-        $options,
-        $id = '', 
-        $name = '',
+        array $options,
+        string $id, 
+        string $name,
         $valueField = 'value', 
         $textField = 'text' , 
         $value = null , 
