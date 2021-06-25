@@ -6,9 +6,15 @@ Laravel Simple Select inputs component for Blade and Livewire.
 [![Total Downloads](https://img.shields.io/packagist/dt/victorybiz/laravel-simple-select.svg?style=flat-square)](https://packagist.org/packages/victorybiz/laravel-simple-select)
 ![GitHub Actions](https://github.com/victorybiz/laravel-simple-select/actions/workflows/main.yml/badge.svg)
 
+### DEMO PREVIEW
+
+![preview](https://github.com/victorybiz/laravel-simple-select/raw/main/demo.gif) 
+
+
 
 ## Table of Contents
 - [Laravel Simple Select](#laravel-simple-select)
+    - [DEMO PREVIEW](#demo-preview)
   - [Table of Contents](#table-of-contents)
   - [Installation](#installation)
   - [Requirements](#requirements)
