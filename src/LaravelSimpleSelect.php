@@ -1,10 +1,10 @@
 <?php
 
-namespace Victorybiz\SimpleLivewireSelect;
+namespace Victorybiz\LaravelSimpleSelect;
 
 use Illuminate\View\Component;
 
-class SimpleLivewireSelect extends Component
+class LaravelSimpleSelect extends Component
 {
     public $id;
     public $name;
@@ -12,10 +12,11 @@ class SimpleLivewireSelect extends Component
     public $valueField;
     public $textField;
     public $placeholder;
-    public $searchPlaceholder;
-    public $emptyOptionsMessage;
-    public $emptyOptionsMessageAfterSearch;
+    public $searchInputPlaceholder;
+    public $noOptions;
+    public $noResult;
     public $disabled;
+    public $required;
     public $multiple;
     public $maxSelection;
     public $searchable;
@@ -27,27 +28,27 @@ class SimpleLivewireSelect extends Component
      */
     public function __construct(
         $options,
-        $name = '',
-        $id = '', 
+        $id, 
+        $name,
         $valueField = 'value', 
         $textField = 'text' , 
         $placeholder = 'Select Option',
-        $searchPlaceholder = 'Search...',
-        $emptyOptionsMessage = 'No data.',
-        $emptyOptionsMessageAfterSearch = 'No results match your search.',
+        $searchInputPlaceholder = 'Search...',
+        $noOptions = 'No option data.',
+        $noResult = 'No results match your search.',
         $maxSelection = 0,
-        $searchable = true,
+        $searchable = true
     )
     {
         $this->options = $options;
-        $this->name = $name;
         $this->id = $id;
+        $this->name = $name;
         $this->valueField = $valueField;
         $this->textField = $textField;
         $this->placeholder = $placeholder;
-        $this->searchPlaceholder = $searchPlaceholder;
-        $this->emptyOptionsMessage = $emptyOptionsMessage;
-        $this->emptyOptionsMessageAfterSearch = $emptyOptionsMessageAfterSearch;
+        $this->searchInputPlaceholder = $searchInputPlaceholder;
+        $this->noOptions = $noOptions;
+        $this->noResult = $noResult;
         $this->maxSelection = $maxSelection;
         $this->searchable = $searchable;
     }
@@ -59,6 +60,6 @@ class SimpleLivewireSelect extends Component
      */
     public function render()
     {
-        return view('components.select');
+        return view('components.laravel-simple-select');
     }
 }

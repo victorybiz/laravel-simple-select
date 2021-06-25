@@ -1,11 +1,21 @@
 {
-    "name": "victorybiz/simple-livewire-select",
-    "description": "Simple Blade/Livewire Select inputs component.",
+    "name": "victorybiz/laravel-simple-select",
+    "description": "Laravel Simple Select inputs component for Blade and Livewire.",
     "keywords": [
         "victorybiz",
-        "simple-livewire-select"
+        "laravel-simple-select",
+        "laravel",
+        "livewire",
+        "laravel-livewire",
+        "laravel-blade",
+        "blade",
+        "select",
+        "select-input",
+        "alpinejs",
+        "custom select",
+        "multi select"
     ],
-    "homepage": "https://github.com/victorybiz/simple-livewire-select",
+    "homepage": "https://github.com/victorybiz/laravel-simple-select",
     "license": "MIT",
     "type": "library",
     "authors": [
@@ -26,12 +36,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Victorybiz\\SimpleLivewireSelect\\": "src"
+            "Victorybiz\\LaravelSimpleSelect\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Victorybiz\\SimpleLivewireSelect\\Tests\\": "tests"
+            "Victorybiz\\LaravelSimpleSelect\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -45,10 +55,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Victorybiz\\SimpleLivewireSelect\\SimpleLivewireSelectServiceProvider"
+                "Victorybiz\\LaravelSimpleSelect\\LaravelSimpleSelectServiceProvider"
             ],
             "aliases": {
-                "SimpleLivewireSelect": "Victorybiz\\SimpleLivewireSelect\\SimpleLivewireSelectFacade"
+                "LaravelSimpleSelect": "Victorybiz\\LaravelSimpleSelect\\LaravelSimpleSelectFacade"
             }
         }
     }

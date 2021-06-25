@@ -1,13 +1,13 @@
 <?php
 
-namespace Victorybiz\SimpleLivewireSelect;
+namespace Victorybiz\LaravelSimpleSelect;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
-use Victorybiz\SimpleLivewireSelect\SimpleLivewireSelect;
+use Victorybiz\LaravelSimpleSelect\LaravelSimpleSelect;
 
 
-class SimpleLivewireSelectServiceProvider extends ServiceProvider
+class LaravelSimpleSelectServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.
@@ -17,36 +17,36 @@ class SimpleLivewireSelectServiceProvider extends ServiceProvider
         /*
          * Optional methods to load your package assets
          */
-        // $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'simple-livewire-select');
-        // $this->loadViewsFrom(__DIR__.'/../resources/views', 'simple-livewire-select');
+        // $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'laravel-simple-select');
+        // $this->loadViewsFrom(__DIR__.'/../resources/views', 'laravel-simple-select');
         // $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
         // $this->loadRoutesFrom(__DIR__.'/routes.php');
 
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__.'/../config/config.php' => config_path('simple-livewire-select.php'),
+                __DIR__.'/../config/config.php' => config_path('laravel-simple-select.php'),
             ], 'config');
 
             // Publishing the views.
             /*$this->publishes([
-                __DIR__.'/../resources/views' => resource_path('views/vendor/simple-livewire-select'),
+                __DIR__.'/../resources/views' => resource_path('views/vendor/laravel-simple-select'),
             ], 'views');*/
 
             // Publishing assets.
             /*$this->publishes([
-                __DIR__.'/../resources/assets' => public_path('vendor/simple-livewire-select'),
+                __DIR__.'/../resources/assets' => public_path('vendor/laravel-simple-select'),
             ], 'assets');*/
 
             // Publishing the translation files.
             /*$this->publishes([
-                __DIR__.'/../resources/lang' => resource_path('lang/vendor/simple-livewire-select'),
+                __DIR__.'/../resources/lang' => resource_path('lang/vendor/laravel-simple-select'),
             ], 'lang');*/
 
             // Registering package commands.
             // $this->commands([]);
         }
 
-        Blade::component(config('simple-livewire-select.component-name', 'simple-select'), SimpleLivewireSelect::class);
+        Blade::component(config('laravel-simple-select.component-name', 'simple-select'), LaravelSimpleSelect::class);
     }
 
     /**
@@ -55,11 +55,11 @@ class SimpleLivewireSelectServiceProvider extends ServiceProvider
     public function register()
     {
         // Automatically apply the package configuration
-        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'simple-livewire-select');
+        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'laravel-simple-select');
 
         // Register the main class to use with the facade
-        $this->app->singleton('simple-livewire-select', function () {
-            return new SimpleLivewireSelect;
+        $this->app->singleton('laravel-simple-select', function () {
+            return new LaravelSimpleSelect;
         });
     }
 }

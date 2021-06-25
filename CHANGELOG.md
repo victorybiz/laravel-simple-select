@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to `simple-livewire-select` will be documented in this file
+All notable changes to `laravel-simple-select` will be documented in this file
 
 ## 1.0.0 - 201X-XX-XX
 

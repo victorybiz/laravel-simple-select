@@ -2,24 +2,27 @@
     class="relative mt-1"
     x-data="Select({
         dataSource: {{ json_encode($options) }},
-        selected: @entangle($attributes->wire('model')),
+        selected: @if($attributes->has('wire:model')) @entangle($attributes->wire('model')) @else '' @endif,
+        hasWireModel: @if($attributes->has('wire:model')) 'true' @else 'false' @endif,
         placeholder: '{{ $placeholder }}',
         valueField: '{{ $valueField }}',
         textField: '{{ $textField }}',
         name: '{{ $name }}',
         id: '{{ $id }}',
-        searchPlaceholder: '{{ $searchPlaceholder }}',
-        emptyOptionsMessage: '{{ $emptyOptionsMessage }}',
-        emptyOptionsMessageAfterSearch: '{{ $emptyOptionsMessageAfterSearch }}',
+        searchInputPlaceholder: '{{ $searchInputPlaceholder }}',
+        noOptions: '{{ $noOptions }}',
+        noResult: '{{ $noResult }}',
         multiple: {{ isset($attributes['multiple']) ? 'true' : 'false' }},
         maxSelection: '{{ $maxSelection }}',
+        required: {{ isset($attributes['required']) ? 'true' : 'false' }},
         disabled: {{ isset($attributes['disabled']) ? 'true' : 'false' }},
         searchable: {{ $searchable ? 'true' : 'false' }},
+        onSelect: '{{ $attributes['on-select'] ?? 'select' }}'
     })"
     x-init="init();"
     x-on:click.outside="closeSelect()"
     x-on:keydown.escape="closeSelect()"
-    :wire:key="name ?? generateID()"
+    :wire:key="`${id}-${generateID()}`"
 >
     <div
         x-ref="simpleLivewireSelectButton"
@@ -39,8 +42,8 @@
                 <div class="w-full px-2 truncate" x-text="placeholder">&nbsp;</div>
                 <div x-show="!disabled" x-bind:class="{ 'cursor-pointer': !disabled }" class="h-4" x-on:click.prevent.stop="toggleSelect()">
                     <span x-show="!open">
-                        @isset($customToggleDownIcon)
-                            {{ $customToggleDownIcon }}
+                        @isset($customCaretDownIcon)
+                            {{ $customCaretDownIcon }}
                         @else
                             {{-- Heroicon: outline/chevron-down --}}
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -49,8 +52,8 @@
                         @endisset 
                     </span>
                     <span x-show="open">
-                        @isset($customToggleUpIcon)
-                            {{ $customToggleUpIcon }}
+                        @isset($customCaretUpIcon)
+                            {{ $customCaretUpIcon }}
                         @else
                             {{-- Heroicon: outline/chevron-up --}}
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -62,9 +65,12 @@
             </div>
         </div>
         @isset($attributes['multiple'])
+            
             <div x-cloak x-show="selected != null && typeof selected === 'object' && selected.length > 0" class="flex flex-wrap space-x-1">
                 <template x-for="(value, index) in selected" :key="index">
                     <div class="text-gray-800 rounded-full truncate bg-gray-300 px-2 py-0.5 my-0.5 flex flex-row items-center">
+                        {{-- Invisible inputs for standard form submission values --}}
+                        <input type="text" :name="`${name}[]`" x-model="value" style="display: none;" />
                         <div class="px-2 truncate" x-text="getTextFromSelectedValue(value)"></div>
                         <div
                             x-show="!disabled"
@@ -89,6 +95,8 @@
         @else            
             <div x-cloak x-show="selected" class="flex flex-wrap"> 
                 <div class="text-gray-800 rounded-sm w-full truncate px-2 py-0.5 my-0.5 flex flex-row items-center">
+                    {{-- Invisible input for standard form submission of values --}}
+                    <input type="text" :name="name" x-model="selected" :required="required" style="display: none;" />
                     <div class="w-full px-2 truncate" x-text="getTextFromSelectedValue(selected)"></div>
                     <div
                         x-show="!disabled"
@@ -111,7 +119,6 @@
             </div>
         @endisset
     </div>
-    {{-- style="height: 17.2rem;" --}}
     <div x-ref="simpleLivewireSelectOptionsContainer" x-bind:style="open ? 'height: ' + popperHeight : ''" class="absolute w-full">
         <div x-show="open">
             <input
@@ -120,7 +127,7 @@
                 x-ref="simpleLivewireSelectOptionsSearch"
                 x-model="search"
                 x-on:click.prevent.stop="open=true"
-                :placeholder="searchPlaceholder"
+                :placeholder="searchInputPlaceholder"
                 class="block w-full p-2 bg-gray-100 border border-gray-300 shadow-md focus:border-gray-200 focus:ring-0 sm:text-sm sm:leading-5"
             />
             <ul                
@@ -129,8 +136,8 @@
                 tabindex="-1"
                 role="listbox"
             >
-                <div x-cloak x-show="Object.values(options).length == 0 && search.toString().trim() == ''" x-text="emptyOptionsMessage" class="px-2 py-2">&nbsp;</div>
-                <div x-cloak x-show="Object.values(options).length == 0 && search.toString().trim() != ''" x-text="emptyOptionsMessageAfterSearch" class="px-2 py-2">&nbsp;</div>
+                <div x-cloak x-show="Object.values(options).length == 0 && search.toString().trim() == ''" x-text="noOptions" class="px-2 py-2">&nbsp;</div>
+                <div x-cloak x-show="Object.values(options).length == 0 && search.toString().trim() != ''" x-text="noResult" class="px-2 py-2">&nbsp;</div>
                 <template x-for="(option, index) in Object.values(options)" :key="index">
                     <li               
                         :tabindex="index"             
@@ -172,15 +179,18 @@
             textField: config.textField,
             placeholder: config.placeholder,
             selected: config.selected,
+            hasWireModel: config.hasWireModel,
             searchable: config.searchable,
+            required: config.required,
             disabled: config.disabled,
             multiple: config.multiple,
             maxSelection: config.maxSelection,
             name: config.name,
             id: config.id,
-            searchPlaceholder: config.searchPlaceholder,
-            emptyOptionsMessage: config.emptyOptionsMessage,
-            emptyOptionsMessageAfterSearch: config.emptyOptionsMessageAfterSearch,
+            searchInputPlaceholder: config.searchInputPlaceholder,
+            noOptions: config.noOptions,
+            noResult: config.noResult,
+            onSelect: config.onSelect,
             isLoading: false,
             popperInstance: null,
             popperHeight: '0px', // 17.2rem
@@ -269,6 +279,13 @@
                         this.selected = value;
                         this.closeSelect();
                     }
+                    if (this.onSelect) {
+                        this.$dispatch(`${this.onSelect}`, { 
+                            id: this.id,
+                            name: this.name,
+                            value: this.selected
+                        });
+                    }
                 }
             },
             
@@ -276,7 +293,7 @@
                 if (this.multiple) {
                     this.selected.splice(index, 1)
                 } else {
-                    this.selected = ''
+                    this.selected = '';
                 }
             },
 
@@ -338,21 +355,28 @@
                             
                 if (window.createPopper && this.$refs.simpleLivewireSelectButton && this.$refs.simpleLivewireSelectOptionsContainer) {
                     this.popperInstance = createPopper(this.$refs.simpleLivewireSelectButton, this.$refs.simpleLivewireSelectOptionsContainer, {
-                        placement: "bottom-start",
+                        // placement: "bottom-start",
+                        placement: "auto",
                         modifiers: [
-                            // {
-                            //     name: 'offset',
-                            //     options: {
-                            //         offset: [0, 8],
-                            //     },
-                            // },
+                            {
+                                name: 'offset',
+                                options: {
+                                    offset: [0, 1],
+                                },
+                            },
                             {
                                 name: "preventOverflow",
                                 options: { 
                                     boundary: "clippingParents" 
                                 },
                             },
-                            { name: "flip", options: { padding: 50 } },
+                            { 
+                                name: "flip", 
+                                options: { 
+                                    padding: 50,
+                                    allowedAutoPlacements: ['top', 'bottom'],
+                                }
+                            }
                         ]
                     });
                 }
