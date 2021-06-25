@@ -372,12 +372,12 @@ The simple-select component makes use of `Popper.js` for positioning the select 
 | **options** | `Array` | | Yes | Array of available options: Objects, Strings or Integers. If array of objects, visible text/label will default to `option.text` and value default to `option.value`. |
 | **value-field** | `String` | `'value'` | No | Array key for option value if `options` is an associative array. |
 | **text-field** | `String` | `'text'` | No | Array key for option text if `options` is an associative array. |
-| **value** | `Array||String||Integer	` | `null` | No | Presets the selected options. |
+| **value** | `Array||String||Integer` | `null` | No | Presets the selected options. |
 | **placeholder** | `String` | `'Select Option'` | No | Equivalent to the `placeholder` attribute on a `<select>` input. | 
 | **searchable** | `Boolean` | `true` | No | Show / hide options search input. | 
 | **search-input-placeholder** | `String` | `'Search...'` | No | Equivalent to the `placeholder` attribute on a `<input>`. | 
 | **class** | `String` |  | No | Equivalent to the `class` attribute on a `<select>` input. | 
-| **multiple** | `Boolean` | `false` | No | Equivalent to the `multiple` attribute on a `<select>` input. This also enable multiple options tagging if set | 
+| **multiple** | `Boolean` | `false` | No | Equivalent to the `multiple` attribute on a `<select>` input. This also enable multiple options tagging if set. | 
 | **max-selection** | `Integer` | | No | Limit number of allowed selected options. | 
 | **required** | `Boolean` | `false` | No | Equivalent to the `required` attribute on a `<select>` input. | 
 | **disabled** | `Boolean` | `false` | No | Equivalent to the `disabled` attribute on a `<select>` input. | 

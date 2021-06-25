@@ -68,7 +68,7 @@
             </div>
         </div>
         @isset($attributes['multiple'])            
-            <div x-cloak x-show="selected != null && typeof selected === 'object' && selected.length > 0" class="flex flex-wrap space-x-1">
+            <div x-cloak x-show="selected && typeof selected === 'object' && selected.length > 0" class="flex flex-wrap space-x-1">
                 <template x-for="(value, index) in selected" :key="index">
                     <div class="text-gray-800 rounded-full truncate bg-gray-300 px-2 py-0.5 my-0.5 flex flex-row items-center">
                         {{-- Invisible inputs for standard form submission values --}}
@@ -198,11 +198,12 @@ function SimpleSelect(config) {
         popperHeight: '0px',
 
         init: function() {
-            if (this.value) {
+            if (this.value && !this.selected) {
                 this.selected = this.value;
+                this.value = null;
             }
 
-            if(!this.selected || this.selected == null){
+            if (!this.selected) {
                 if (this.multiple) {
                     this.selected = [];
                 } else {
@@ -415,4 +416,3 @@ function SimpleSelect(config) {
 }
 window.SimpleSelect = SimpleSelect;
 </script>
-<?php //endif; ?>
