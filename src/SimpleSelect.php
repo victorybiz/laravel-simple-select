@@ -63,6 +63,6 @@ class SimpleSelect extends Component
      */
     public function render()
     {
-        return view('components.simple-select');
+        return view('simple-select');
     }
 }
