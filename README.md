@@ -22,6 +22,7 @@ Laravel Simple Select inputs component for Blade and Livewire.
   - [Usage](#usage)
       - [Simple Select](#simple-select)
       - [Custom Option Slot](#custom-option-slot)
+      - [Custom Selected Slot](#custom-selected-slot)
       - [Custom Icon Slots](#custom-icon-slots)
     - [Dependent Selects](#dependent-selects)
     - [Event Listener](#event-listener)
@@ -186,6 +187,33 @@ $options = [
   </x-slot>
 </x-simple-select>
 ```
+
+<a name="custom-selected-slot"></a>
+
+#### Custom Selected Slot
+```html
+<x-simple-select       
+    name="country"
+    id="country"
+    :options="$options"
+    value-field='code'
+    text-field='name'
+    placeholder="Select Country"
+    search-input-placeholder="Search Country"
+    :searchable="true"                                               
+    class="form-select"     
+>
+  <x-slot name="customSelected">
+    <img class="float-left mr-2" :src="`https://www.countryflags.io/${option.code?.toLowerCase()}/shiny/24.png`">
+    <span x-text="option.name"></span>
+  </x-slot>
+  <x-slot name="customOption">
+    <img class="float-left mr-2 -mt-1" :src="`https://www.countryflags.io/${option.code?.toLowerCase()}/shiny/32.png`">
+    <span x-text="option.name"></span>
+  </x-slot>
+</x-simple-select>
+```
+
 
 <a name="custom-icon-slot"></a>
 
@@ -392,10 +420,11 @@ The simple-select component makes use of `Popper.js` for positioning the select 
 
 | Name | Description |
 | --- | --- |
-| **customOption** | Slot for custom option text template. See [example](custom-option-slot) above. |
-| **customDeselectOptionIcon**| Slot for custom deselect option icon markup. See [example](custom-icon-slot) above. |
-| **customCaretDownIcon**| Slot for custom caret down icon markup. See [example](custom-icon-slot) above. |
-| **customCaretUpIcon**| Slot for custom caret up icon markup. See [example](custom-icon-slot) above. |
+| **customOption** | Slot for custom option text template. See [example](#custom-option-slot) above. |
+| **customSelected** | Slot for custom selected template. See [example](#custom-selected-slot) above. |
+| **customDeselectOptionIcon**| Slot for custom deselect option icon markup. See [example](#custom-icon-slot) above. |
+| **customCaretDownIcon**| Slot for custom caret down icon markup. See [example](#custom-icon-slot) above. |
+| **customCaretUpIcon**| Slot for custom caret up icon markup. See [example](#custom-icon-slot) above. |
 
 <a name="events"></a>
 
@@ -403,7 +432,7 @@ The simple-select component makes use of `Popper.js` for positioning the select 
 
 | Name | Listen to |  Description |
 | --- | --- |  --- |
-| **Select** | `select` | Emitted after selecting an option. See [example](event-listener) above. |
+| **Select** | `select` | Emitted after selecting an option. See [example](#event-listener) above. |
 
 
 ## Testing

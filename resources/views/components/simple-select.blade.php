@@ -55,7 +55,17 @@
                     <div class="text-gray-800 rounded-full truncate bg-gray-300 px-2 py-0.5 my-0.5 flex flex-row items-center">
                         {{-- Invisible inputs for standard form submission values --}}
                         <input type="text" :name="`${name}[]`" x-model="value" style="display: none;" />
-                        <div class="px-2 truncate" x-text="getTextFromSelectedValue(value)"></div>
+                        <div class="px-2 truncate">
+                            @isset($customSelected)
+                                <span x-data="{ option: getOptionFromSelectedValue(value) }">
+                                    <template x-if="(typeof option === 'string' && option.length > 0) || (typeof option === 'object' && Object.keys(option).length > 0)">
+                                        <span>{{ $customSelected }}</span>
+                                    </template>
+                                </span>
+                            @else
+                                <span x-text="getTextFromSelectedValue(value)"></span>
+                            @endisset
+                        </div>
                         <div
                             x-show="!disabled"
                             x-bind:class="{ 'cursor-pointer': !disabled }"
@@ -74,7 +84,17 @@
                 <div class="text-gray-800 rounded-sm w-full truncate px-2 py-0.5 my-0.5 flex flex-row items-center">
                     {{-- Invisible input for standard form submission of values --}}
                     <input type="text" :name="name" x-model="selected" :required="required" style="display: none;" />
-                    <div class="w-full px-2 truncate" x-text="getTextFromSelectedValue(selected)"></div>
+                    <div class="w-full px-2 truncate">
+                        @isset($customSelected)                            
+                            <span x-data="{ option: getOptionFromSelectedValue(selected) }">
+                                <template x-if="(typeof option === 'string' && option.length > 0) || (typeof option === 'object' && Object.keys(option).length > 0)">
+                                    <span>{{ $customSelected }}</span>
+                                </template>
+                            </span>
+                        @else
+                            <span x-text="getTextFromSelectedValue(selected)"></span>
+                        @endisset
+                    </div>    
                     <div
                         x-show="!disabled && clearable"
                         x-bind:class="{ 'cursor-pointer': !disabled }"
