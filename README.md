@@ -376,6 +376,7 @@ The simple-select component makes use of `Popper.js` for positioning the select 
 | **placeholder** | `String` | `'Select Option'` | No | Equivalent to the `placeholder` attribute on a `<select>` input. | 
 | **searchable** | `Boolean` | `true` | No | Show / hide options search input. | 
 | **search-input-placeholder** | `String` | `'Search...'` | No | Equivalent to the `placeholder` attribute on a `<input>`. | 
+| **clearable** | `Boolean` | `false` | No | Enable support for clearable selection. Use only for a non `multiple` select. | 
 | **class** | `String` |  | No | Equivalent to the `class` attribute on a `<select>` input. | 
 | **multiple** | `Boolean` | `false` | No | Equivalent to the `multiple` attribute on a `<select>` input. This also enable multiple options tagging if set. | 
 | **max-selection** | `Integer` | | No | Limit number of allowed selected options. | 
