@@ -21,6 +21,7 @@ class SimpleSelect extends Component
     public $multiple;
     public $maxSelection;
     public $searchable;
+    public $clearable;
 
     /**
      * Create a new component instance.
@@ -39,7 +40,8 @@ class SimpleSelect extends Component
         $noOptions = 'No option data.',
         $noResult = 'No results match your search.',
         $maxSelection = 0,
-        $searchable = true
+        $searchable = true,
+        $clearable = false
     )
     {
         $this->options = $options;
@@ -54,6 +56,7 @@ class SimpleSelect extends Component
         $this->noResult = $noResult;
         $this->maxSelection = $maxSelection;
         $this->searchable = $searchable;
+        $this->clearable = $clearable;
     }
 
     /**

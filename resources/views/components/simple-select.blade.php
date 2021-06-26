@@ -21,6 +21,7 @@
         required: {{ isset($attributes['required']) ? 'true' : 'false' }},
         disabled: {{ isset($attributes['disabled']) ? 'true' : 'false' }},
         searchable: {{ $searchable ? 'true' : 'false' }},
+        clearable: {{ $clearable ? 'true' : 'false' }},
         onSelect: '{{ $attributes['on-select'] ?? 'select' }}'
     })"
     x-init="init();"
@@ -44,26 +45,7 @@
             <div class="text-gray-800 rounded-sm w-full truncate px-2 py-0.5 my-0.5 flex flex-row items-center">
                 <div class="w-full px-2 truncate" x-text="placeholder">&nbsp;</div>
                 <div x-show="!disabled" x-bind:class="{ 'cursor-pointer': !disabled }" class="h-4" x-on:click.prevent.stop="toggleSelect()">
-                    <span x-show="!open">
-                        @isset($customCaretDownIcon)
-                            {{ $customCaretDownIcon }}
-                        @else
-                            {{-- Heroicon: outline/chevron-down --}}
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                            </svg>
-                        @endisset 
-                    </span>
-                    <span x-show="open">
-                        @isset($customCaretUpIcon)
-                            {{ $customCaretUpIcon }}
-                        @else
-                            {{-- Heroicon: outline/chevron-up --}}
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
-                            </svg>
-                        @endisset 
-                    </span>
+                    @include('simple-select::components.caret-icons')
                 </div>
             </div>
         </div>
@@ -82,14 +64,7 @@
                             class="w-4"
                             tabindex="0"
                         >
-                            @isset($customDeselectOptionIcon)
-                                {{ $customDeselectOptionIcon }}
-                            @else
-                                {{-- Heroicon solid/x-circle --}}
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class = 'h-4 fill-current'>
-                                    <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6 16.538l-4.592-4.548 4.546-4.587-1.416-1.403-4.545 4.589-4.588-4.543-1.405 1.405 4.593 4.552-4.547 4.592 1.405 1.405 4.555-4.596 4.591 4.55 1.403-1.416z"/>
-                                </svg>
-                            @endisset 
+                            @include('simple-select::components.deselect-icon')
                         </div>
                     </div>
                 </template>
@@ -108,14 +83,12 @@
                         class="h-4"
                         tabindex="0"
                     >
-                        @isset($customDeselectOptionIcon)
-                            {{ $customDeselectOptionIcon }}
-                        @else
-                            {{-- Heroicon solid/x-circle --}}
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class = 'h-4 fill-current'>
-                                <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6 16.538l-4.592-4.548 4.546-4.587-1.416-1.403-4.545 4.589-4.588-4.543-1.405 1.405 4.593 4.552-4.547 4.592 1.405 1.405 4.555-4.596 4.591 4.55 1.403-1.416z"/>
-                            </svg>
-                        @endisset                        
+                        <span x-show="clearable">
+                            @include('simple-select::components.deselect-icon')  
+                        </span>                 
+                        <span x-show="!clearable">
+                            @include('simple-select::components.caret-icons')
+                        </span>                 
                     </div>
                 </div>
             </div>
@@ -183,6 +156,7 @@ function SimpleSelect(config) {
         placeholder: config.placeholder,
         selected: config.selected,
         searchable: config.searchable,
+        clearable: config.clearable,
         required: config.required,
         disabled: config.disabled,
         multiple: config.multiple,
