@@ -2,19 +2,19 @@
 
 All notable changes to `laravel-simple-select` will be documented in this file
 
-## 1.2.0 - 2021-06-26
+## v1.2.0 - 2021-06-26
 
 - Added `customSelected` Slot.
   
-## 1.1.2 - 2021-06-26
+## v1.1.2 - 2021-06-26
 
 - Fix bugs in `:clearable` props.
   
-## 1.1.1 - 2021-06-26
+## v1.1.1 - 2021-06-26
 
 - Added `:clearable` prop.
 
-## 1.0.6 - 2021-06-26
+## v1.0.6 - 2021-06-26
 
 - Updated `README.md`
 
