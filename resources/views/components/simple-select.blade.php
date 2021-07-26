@@ -2,7 +2,7 @@
     class="relative mt-1"
     x-data="SimpleSelect({
         dataSource: {{ is_array($options) ? json_encode($options) : json_encode([]) }},
-        @if($attributes->has('wire:model'))
+        @if($attributes->whereStartsWith('wire:model')->first())
             selected: @entangle($attributes->wire('model')),
         @else
             selected: '',
@@ -117,7 +117,7 @@
             </div>
         @endisset
     </div>
-    <div x-ref="simpleSelectOptionsContainer" x-bind:style="open ? 'height: ' + popperHeight : ''" class="absolute w-full">
+    <div x-ref="simpleSelectOptionsContainer" x-bind:style="open ? 'height: ' + popperHeight : ''" class="absolute z-10 w-full">
         <div x-show="open">
             <input
                 type="search"
