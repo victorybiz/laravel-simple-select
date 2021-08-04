@@ -29,15 +29,14 @@
           init: function() {
               if (this.value && !this.selected) {
                   this.selected = this.value;
-                  this.value = null;
               }
-    
+              
               if (!this.selected) {
-                  if (this.multiple) {
-                      this.selected = [];
-                  } else {
-                      this.selected = '';
-                  }
+                if (this.multiple) {
+                    this.selected = [];
+                } else {
+                    this.selected = null;
+                }
               }
               this.resetOptions();
     

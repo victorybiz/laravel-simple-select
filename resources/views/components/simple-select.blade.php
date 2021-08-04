@@ -1,4 +1,5 @@
 <div
+    x-cloak
     class="relative mt-1"
     x-data="SimpleSelect({
         dataSource: {{ is_array($options) ? json_encode($options) : json_encode([]) }},
@@ -41,7 +42,7 @@
         }"
         {{ $attributes->class('block w-full border border-gray-300 rounded-md shadow-sm focus:ring-0 focus:ring-gray-400 focus:border-gray-400 sm:text-sm sm:leading-5')->only('class'); }}
     > 
-        <div x-cloak x-show="!selected || selected.length === 0" class="flex flex-wrap">
+        <div x-show="!selected || selected.length === 0" class="flex flex-wrap">
             <div class="text-gray-800 rounded-sm w-full truncate px-2 py-0.5 my-0.5 flex flex-row items-center">
                 <div class="w-full px-2 truncate" x-text="placeholder">&nbsp;</div>
                 <div x-show="!disabled" x-bind:class="{ 'cursor-pointer': !disabled }" class="h-6" x-on:click.prevent.stop="toggleSelect()">
@@ -50,7 +51,7 @@
             </div>
         </div>
         @isset($attributes['multiple'])            
-            <div x-cloak x-show="selected && typeof selected === 'object' && selected.length > 0" class="flex flex-wrap space-x-1">
+            <div x-show="selected && typeof selected === 'object' && selected.length > 0" class="flex flex-wrap space-x-1">
                 <template x-for="(value, index) in selected" :key="index">
                     <div class="text-gray-800 rounded-full truncate bg-gray-300 px-2 py-0.5 my-0.5 flex flex-row items-center">
                         {{-- Invisible inputs for standard form submission values --}}
@@ -80,7 +81,7 @@
                 </template>
             </div>
         @else            
-            <div x-cloak x-show="selected" class="flex flex-wrap"> 
+            <div x-show="selected" class="flex flex-wrap"> 
                 <div class="text-gray-800 rounded-sm w-full truncate px-2 py-0.5 my-0.5 flex flex-row items-center">
                     {{-- Invisible input for standard form submission of values --}}
                     <input type="text" :name="name" x-model="selected" :required="required" style="display: none;" />
@@ -134,8 +135,8 @@
                 tabindex="-1"
                 role="listbox"
             >
-                <div x-cloak x-show="Object.values(options).length == 0 && search.toString().trim() == ''" x-text="noOptions" class="px-2 py-2"></div>
-                <div x-cloak x-show="Object.values(options).length == 0 && search.toString().trim() != ''" x-text="noResult" class="px-2 py-2"></div>
+                <div x-show="Object.values(options).length == 0 && search.toString().trim() == ''" x-text="noOptions" class="px-2 py-2"></div>
+                <div x-show="Object.values(options).length == 0 && search.toString().trim() != ''" x-text="noResult" class="px-2 py-2"></div>
                 <template x-for="(option, index) in Object.values(options)" :key="index">
                     <li               
                         :tabindex="index"             
