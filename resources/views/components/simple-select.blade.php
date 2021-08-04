@@ -44,7 +44,7 @@
         <div x-cloak x-show="!selected || selected.length === 0" class="flex flex-wrap">
             <div class="text-gray-800 rounded-sm w-full truncate px-2 py-0.5 my-0.5 flex flex-row items-center">
                 <div class="w-full px-2 truncate" x-text="placeholder">&nbsp;</div>
-                <div x-show="!disabled" x-bind:class="{ 'cursor-pointer': !disabled }" class="h-4" x-on:click.prevent.stop="toggleSelect()">
+                <div x-show="!disabled" x-bind:class="{ 'cursor-pointer': !disabled }" class="h-6" x-on:click.prevent.stop="toggleSelect()">
                     @include('simple-select::components.caret-icons')
                 </div>
             </div>
@@ -71,7 +71,7 @@
                             x-bind:class="{ 'cursor-pointer': !disabled }"
                             x-on:click.prevent.stop="deselectOption(index)"
                             x-on:keyup.enter="deselectOption(index)"
-                            class="w-4"
+                            class="w-6"
                             tabindex="0"
                         >
                             @include('simple-select::components.deselect-icon')
@@ -100,7 +100,7 @@
                         x-bind:class="{ 'cursor-pointer': !disabled }"
                         x-on:click.prevent.stop="deselectOption()"
                         x-on:keyup.enter="deselectOption()"
-                        class="h-4"
+                        class="h-6"
                         tabindex="0"
                     >
                         @include('simple-select::components.deselect-icon')                  
@@ -108,7 +108,7 @@
                     <div
                         x-show="!disabled && !clearable"
                         x-bind:class="{ 'cursor-pointer': !disabled }"
-                        class="h-4"
+                        class="h-6"
                         tabindex="0"
                     >
                         @include('simple-select::components.caret-icons')                 
@@ -139,7 +139,7 @@
                 <template x-for="(option, index) in Object.values(options)" :key="index">
                     <li               
                         :tabindex="index"             
-                        class="relative py-2 pl-3 select-none pr-9 "
+                        class="relative py-2 pl-3 select-none pr-9 whitespace-nowrap"
                         @isset($attributes['multiple'])
                             x-bind:class="{
                                 'bg-gray-300 text-black hover:none': selected && selected.includes(getOptionValue(option, index)),

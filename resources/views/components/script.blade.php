@@ -187,7 +187,7 @@
           popper: function() {
               // update popper position
               if (this.$refs.simpleSelectOptionsList && this.$refs.simpleSelectOptionsList.offsetHeight) {
-                  this.popperHeight = (this.$refs.simpleSelectOptionsList.offsetHeight + 20) + 'px';
+                  this.popperHeight = (this.$refs.simpleSelectOptionsList.offsetHeight + 0) + 'px';
               }
               
               let createPopper = window.Popper ? window.Popper.createPopper : null;
@@ -205,7 +205,7 @@
                           {
                               name: 'offset',
                               options: {
-                                  offset: [0, 1],
+                                  offset: [0, 0],
                               },
                           },
                           {
@@ -217,7 +217,7 @@
                           { 
                               name: "flip", 
                               options: { 
-                                  padding: 50,
+                                  padding: 20,
                                   allowedAutoPlacements: ['top', 'bottom'],
                               }
                           }
