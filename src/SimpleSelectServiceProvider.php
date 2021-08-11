@@ -45,7 +45,8 @@ class SimpleSelectServiceProvider extends ServiceProvider
             // Registering package commands.
             // $this->commands([]);
         }
-
+        
+        // Registering the blade components.
         Blade::component(config('simple-select.component-name', 'simple-select'), SimpleSelect::class);
     }
 

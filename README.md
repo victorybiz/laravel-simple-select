@@ -90,7 +90,7 @@ Alpine.start()
 
 window.createPopper = createPopper;
 ```
-If you’re not using a compiled JavaScript, don’t forget to include CDN versions of the JavaScript Dependencies before it.
+If you’re using the compiled JavaScript, don’t forget to include CDN versions of the JavaScript Dependencies before it.
 
 <a name="usage"></a>
 

@@ -2,6 +2,18 @@
 
 All notable changes to `laravel-simple-select` will be documented in this file
 
+## v1.2.3 - 2021-08-11
+
+- `customSelected` Slot Bug fix.
+  
+## v1.2.2 - 2021-08-04
+
+- Popper positioning bug fix
+  
+## v1.2.1 - 2021-07-26
+
+- wire:model and popper bug fix.
+  
 ## v1.2.0 - 2021-06-26
 
 - Added `customSelected` Slot.

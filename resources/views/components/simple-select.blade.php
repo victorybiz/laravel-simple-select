@@ -88,7 +88,7 @@
                     <div class="w-full px-2 truncate">
                         @isset($customSelected)                            
                             <span x-data="{ option: getOptionFromSelectedValue(selected) }">
-                                <template x-if="(typeof option === 'string' && option.length > 0) || (typeof option === 'object' && Object.keys(option).length > 0)">
+                                <template x-if="option !== null && ((typeof option === 'string' && option.length > 0) || (typeof option === 'object' && Object.keys(option).length > 0))">
                                     <span>{{ $customSelected }}</span>
                                 </template>
                             </span>
