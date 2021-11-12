@@ -29,9 +29,9 @@ class SimpleSelect extends Component
      * @return void
      */
     public function __construct(
-        array $options,
-        string $id, 
-        string $name,
+        array $options = [],
+        string $id = null, 
+        string $name = null,
         $valueField = 'value', 
         $textField = 'text' , 
         $value = null , 
@@ -57,6 +57,13 @@ class SimpleSelect extends Component
         $this->maxSelection = $maxSelection;
         $this->searchable = $searchable;
         $this->clearable = $clearable;
+
+        if (!$this->id) {
+            $this->id = 'simple-select-' . uniqid();
+        }
+        if (!$this->name) {
+            $this->name = $this->id;
+        }
     }
 
     /**
