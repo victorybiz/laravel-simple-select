@@ -150,9 +150,9 @@
               let valueField = this.valueField;
               return Object.values(this.dataSource).findIndex(function(x) {
                   if (typeof x === 'object') {
-                      return x[valueField] === value;
+                      return x[valueField] == value;
                   } else {
-                      return x === value;
+                      return x == value;
                   }
               });       
           },
@@ -162,9 +162,9 @@
               let valueField = this.valueField;
               let foundValue = Object.values(this.dataSource).find(function(x) {
                   if (typeof x === 'object') {
-                      return x[valueField] === value;
+                      return x[valueField] == value;
                   } else {
-                      return x === value;
+                      return x == value;
                   }
               });
               return typeof foundValue === 'object' && this.dataSource[index] ? this.dataSource[index][this.textField] : foundValue;
@@ -175,9 +175,9 @@
               let valueField = this.valueField;
               let foundValue = Object.values(this.dataSource).find(function(x) {
                   if (typeof x === 'object') {
-                      return x[valueField] === value;
+                      return x[valueField] == value;
                   } else {
-                      return x === value;
+                      return x == value;
                   }
               });
               return foundValue ?? value;

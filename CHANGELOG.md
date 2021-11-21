@@ -2,6 +2,14 @@
 
 All notable changes to `laravel-simple-select` will be documented in this file
 
+## v1.2.5 - 2021-11-21
+
+- Fixed bugs in usage of integer as field value.
+  
+## v1.2.4 - 2021-11-12
+
+- Added default value for `id` prop.
+  
 ## v1.2.3 - 2021-08-11
 
 - `customSelected` Slot Bug fix.
