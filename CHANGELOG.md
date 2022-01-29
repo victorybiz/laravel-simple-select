@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-simple-select` will be documented in this file
 
+## v1.3.0 - 2022-01-29
+
+- Added TailwindCSS Dark Mode support.
+  
 ## v1.2.5 - 2021-11-21
 
 - Fixed bugs in usage of integer as field value.

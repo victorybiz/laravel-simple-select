@@ -44,7 +44,7 @@
     > 
         <div x-show="!selected || selected.length === 0" class="flex flex-wrap">
             <div class="text-gray-800 rounded-sm w-full truncate px-2 py-0.5 my-0.5 flex flex-row items-center">
-                <div class="w-full px-2 truncate" x-text="placeholder">&nbsp;</div>
+                <div class="w-full px-2 truncate dark:text-gray-500" x-text="placeholder">&nbsp;</div>
                 <div x-show="!disabled" x-bind:class="{ 'cursor-pointer': !disabled }" class="h-6" x-on:click.prevent.stop="toggleSelect()">
                     @include('simple-select::components.caret-icons')
                 </div>
@@ -53,7 +53,7 @@
         @isset($attributes['multiple'])            
             <div x-show="selected && typeof selected === 'object' && selected.length > 0" class="flex flex-wrap space-x-1">
                 <template x-for="(value, index) in selected" :key="index">
-                    <div class="text-gray-800 rounded-full truncate bg-gray-300 px-2 py-0.5 my-0.5 flex flex-row items-center">
+                    <div class="text-gray-800 dark:text-gray-400 rounded-full truncate bg-gray-300 dark:bg-gray-800 px-2 py-0.5 my-0.5 flex flex-row items-center">
                         {{-- Invisible inputs for standard form submission values --}}
                         <input type="text" :name="`${name}[]`" x-model="value" style="display: none;" />
                         <div class="px-2 truncate">
@@ -82,7 +82,7 @@
             </div>
         @else            
             <div x-show="selected" class="flex flex-wrap"> 
-                <div class="text-gray-800 rounded-sm w-full truncate px-2 py-0.5 my-0.5 flex flex-row items-center">
+                <div class="text-gray-800 dark:text-gray-400 rounded-sm w-full truncate px-2 py-0.5 my-0.5 flex flex-row items-center">
                     {{-- Invisible input for standard form submission of values --}}
                     <input type="text" :name="name" x-model="selected" :required="required" style="display: none;" />
                     <div class="w-full px-2 truncate">
@@ -127,29 +127,29 @@
                 x-model="search"
                 x-on:click.prevent.stop="open=true"
                 :placeholder="searchInputPlaceholder"
-                class="block w-full p-2 bg-gray-100 border border-gray-300 shadow-md focus:border-gray-200 focus:ring-0 sm:text-sm sm:leading-5"
+                class="block w-full p-2 bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 dark:text-gray-200 shadow-md focus:border-gray-200 focus:ring-0 sm:text-sm sm:leading-5"
             />
             <ul                
                 x-ref="simpleSelectOptionsList"
-                class="absolute z-10 w-full py-1 overflow-auto text-base bg-white shadow-lg rounded-b-md max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
+                class="absolute z-10 w-full py-1 overflow-auto text-base bg-white dark:bg-gray-600 shadow-lg rounded-b-md max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
                 tabindex="-1"
                 role="listbox"
             >
-                <div x-show="Object.values(options).length == 0 && search.toString().trim() == ''" x-text="noOptions" class="px-2 py-2"></div>
-                <div x-show="Object.values(options).length == 0 && search.toString().trim() != ''" x-text="noResult" class="px-2 py-2"></div>
+                <div x-show="Object.values(options).length == 0 && search.toString().trim() == ''" x-text="noOptions" class="px-2 py-2 dark:text-gray-400"></div>
+                <div x-show="Object.values(options).length == 0 && search.toString().trim() != ''" x-text="noResult" class="px-2 py-2 dark:text-gray-400"></div>
                 <template x-for="(option, index) in Object.values(options)" :key="index">
                     <li               
                         :tabindex="index"             
                         class="relative py-2 pl-3 select-none pr-9 whitespace-nowrap"
                         @isset($attributes['multiple'])
                             x-bind:class="{
-                                'bg-gray-300 text-black hover:none': selected && selected.includes(getOptionValue(option, index)),
-                                'text-gray-900 cursor-defaul hover:bg-gray-200 hover:cursor-pointer focus:bg-gray-200': !(selected && selected.includes(getOptionValue(option, index))),
+                                'bg-gray-300 dark:bg-gray-700 text-black dark:text-gray-400 hover:none': selected && selected.includes(getOptionValue(option, index)),
+                                'text-gray-900 dark:text-gray-400 cursor-defaul hover:bg-gray-200 dark:hover:bg-gray-800 hover:cursor-pointer focus:bg-gray-200': !(selected && selected.includes(getOptionValue(option, index))),
                             }"
                         @else
                             x-bind:class="{
-                                'bg-gray-300 text-black hover:none': selected == getOptionValue(option, index),
-                                'text-gray-900 cursor-defaul hover:bg-gray-200 hover:cursor-pointer focus:bg-gray-200': !(selected == getOptionValue(option, index)),
+                                'bg-gray-300 dark:bg-gray-700 text-black dark:text-gray-400 hover:none': selected == getOptionValue(option, index),
+                                'text-gray-900 dark:text-gray-400 cursor-defaul hover:bg-gray-200 dark:hover:bg-gray-800 hover:cursor-pointer focus:bg-gray-200': !(selected == getOptionValue(option, index)),
                             }"
                         @endisset
                         x-on:click="selectOption(getOptionValue(option, index))"
