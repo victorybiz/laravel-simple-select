@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-simple-select` will be documented in this file
 
+## v1.4.0 - 2022-01-29
+
+- Added support for Laravel 9
+  
 ## v1.3.0 - 2022-01-29
 
 - Added TailwindCSS Dark Mode support.
