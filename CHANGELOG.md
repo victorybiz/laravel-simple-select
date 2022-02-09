@@ -2,7 +2,7 @@
 
 All notable changes to `laravel-simple-select` will be documented in this file
 
-## v1.4.0 - 2022-01-29
+## v1.4.0 - 2022-02-09
 
 - Added support for Laravel 9
   
